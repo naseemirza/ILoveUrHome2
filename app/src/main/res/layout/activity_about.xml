@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f0f0f0"
+    tools:context="com.example.user.iloveurhome.AboutActivity">
+
+
+    <ScrollView
+        android:id="@+id/scrolview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/re"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="18dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="16dp"
+        android:textColor="@color/colorBlack"
+        android:textSize="15dp"
+        android:text="Welcome" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="18dp"
+        android:paddingEnd="15dp"
+        android:textColor="#4e4e4e"
+        android:textSize="12sp"
+        android:lineSpacingExtra="3sp"
+        tools:ignore="RtlCompat"
+        android:layout_below="@+id/textView9"
+        android:layout_marginTop="10dp"
+        android:text="@string/aboutus" />
+
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>

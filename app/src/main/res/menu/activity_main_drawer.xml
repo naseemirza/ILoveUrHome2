@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+    <group android:checkableBehavior="single"
+        android:id="@+id/menu_top1">
+
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/home"
+            android:title="Home" />
+
+    </group>
+
+    <group android:checkableBehavior="single"
+        android:id="@+id/menu_top2">
+
+        <item
+
+            android:id="@+id/nav_about"
+            android:icon="@drawable/about_us"
+            android:title="About" />
+    </group>
+
+    <group android:checkableBehavior="single"
+        android:id="@+id/menu_top3">
+
+        <item
+            android:id="@+id/nav_byrs"
+            android:icon="@drawable/buyers"
+            android:title="Buyers" />
+    </group>
+
+    <group android:checkableBehavior="single"
+        android:id="@+id/menu_top4">
+
+        <item
+            android:id="@+id/nav_slrs"
+            android:icon="@drawable/sellers"
+            android:title="Sellers" />
+    </group>
+
+    <group android:checkableBehavior="single"
+        android:id="@+id/menu_top5">
+
+        <item
+            android:id="@+id/nav_contact"
+            android:icon="@drawable/phone"
+            android:title="Contact" />
+    </group>
+
+
+
+
+    <!--<item-->
+    <!--android:id="@+id/nav_about"-->
+
+    <!--android:title="About" />-->
+    <!--<item-->
+    <!--android:id="@+id/nav_byrs"-->
+    <!--android:title="Buyers" />-->
+    <!--<item-->
+    <!--android:id="@+id/nav_slrs"-->
+    <!--android:title="Sellers" />-->
+    <!--<item-->
+    <!--android:id="@+id/nav_contact"-->
+    <!--android:title="Contact" />-->
+    <!--<item-->
+    <!--android:id="@+id/nav_resrcs"-->
+    <!--android:title="Resources" />-->
+
+
+    <group android:checkableBehavior="single"
+        android:id="@+id/menu_btm">
+
+        <item
+            android:id="@+id/nav_resrcs"
+            android:icon="@drawable/resources"
+            android:title="Resources" />
+    </group>
+</menu>
