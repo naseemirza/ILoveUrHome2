@@ -1,12 +1,10 @@
-package com.example.user.iloveurhome;
+package tbs.thinkbiz.solutions.iloveurhome;
 
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -19,9 +17,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 
+import tbs.thinkbiz.solutions.iloveurhome.R;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
 
     Button buttonbyr, buttonslr;
 
@@ -95,17 +94,18 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.action_settings) {
 
             String number = "734-972-6003";
-            Intent intent = new Intent(Intent.ACTION_CALL);
+            Intent intent = new Intent(Intent.ACTION_DIAL);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_NO_USER_ACTION);
             intent.setData(Uri.parse("tel:" + number));
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                 //TODO: Consider calling
+            if (ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                // TODO: Consider calling
                 //    ActivityCompat#requestPermissions
                 // here to request the missing permissions, and then overriding
                 //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
                 //                                          int[] grantResults)
                 // to handle the case where the user grants the permission. See the documentation
                 // for ActivityCompat#requestPermissions for more details.
-                //return TODO;
+
             }
             startActivity(intent);
 

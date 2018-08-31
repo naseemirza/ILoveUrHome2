@@ -1,4 +1,4 @@
-package com.example.user.iloveurhome;
+package tbs.thinkbiz.solutions.iloveurhome;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +8,8 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+
+import tbs.thinkbiz.solutions.iloveurhome.R;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -49,7 +51,7 @@ public class SplashActivity extends AppCompatActivity {
                         waited += 100;
                     }
                     Intent intent = new Intent(SplashActivity.this,
-                            MainActivity.class);
+                            LoginActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                     startActivity(intent);
                     SplashActivity.this.finish();

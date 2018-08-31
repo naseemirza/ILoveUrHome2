@@ -1,9 +1,11 @@
-package com.example.user.iloveurhome;
+package tbs.thinkbiz.solutions.iloveurhome;
 
 import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.pm.LabeledIntent;
 import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.ActionBar;
@@ -14,13 +16,9 @@ import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -30,23 +28,25 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import tbs.thinkbiz.solutions.iloveurhome.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ContactUsActivity extends AppCompatActivity {
 
-    LinearLayout linearLayout;
+    LinearLayout linearLayoutcall,linearLayoutmail;
 
     Button button;
     EditText editTextfnm,editTextlnm,editTextmail,editTextphone,editTextmsg;
 
     ProgressDialog progressDialog;
     private static String REG_URL="http://demotbs.com/dev/love/mobileapp/contactus.php";
-    String Uroll;
     int success;
     int error;
     String msg;
@@ -63,8 +63,11 @@ public class ContactUsActivity extends AppCompatActivity {
         getSupportActionBar().setCustomView(R.layout.contactusbar);
         View view = getSupportActionBar().getCustomView();
 
-        linearLayout = (LinearLayout) findViewById(R.id.li1);
-        linearLayout.setOnClickListener(new View.OnClickListener() {
+
+        //Call
+
+        linearLayoutcall = (LinearLayout) findViewById(R.id.li1);
+        linearLayoutcall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String number = "734-972-6003";
@@ -85,6 +88,50 @@ public class ContactUsActivity extends AppCompatActivity {
             }
         });
 
+
+        //Mail
+
+        linearLayoutmail = (LinearLayout) findViewById(R.id.li2);
+        linearLayoutmail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent emailIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("mailto:"));
+                PackageManager pm = getPackageManager();
+
+                List<ResolveInfo> resInfo = pm.queryIntentActivities(emailIntent, 0);
+                if (resInfo.size() > 0) {
+                    ResolveInfo ri = resInfo.get(0);
+                    // First create an intent with only the package name of the first registered email app
+                    // and build a picked based on it
+                    Intent intentChooser = pm.getLaunchIntentForPackage(ri.activityInfo.packageName);
+                    Intent openInChooser =
+                            Intent.createChooser(intentChooser,
+                                    getString(R.string.mail));
+
+                    // Then create a list of LabeledIntent for the rest of the registered email apps
+                    List<LabeledIntent> intentList = new ArrayList<LabeledIntent>();
+                    for (int i = 1; i < resInfo.size(); i++) {
+                        // Extract the label and repackage it in a LabeledIntent
+                        ri = resInfo.get(i);
+                        String packageName = ri.activityInfo.packageName;
+                        Intent intent = pm.getLaunchIntentForPackage(packageName);
+                        intentList.add(new LabeledIntent(intent, packageName, ri.loadLabel(pm), ri.icon));
+                    }
+
+                    LabeledIntent[] extraIntents = intentList.toArray(new LabeledIntent[intentList.size()]);
+                    // Add the rest of the email apps to the picker selection
+                    openInChooser.putExtra(Intent.EXTRA_INITIAL_INTENTS, extraIntents);
+                    startActivity(openInChooser);
+                }
+
+//                Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
+//                emailIntent.setType("plain/text");
+//                startActivity(emailIntent);
+
+            }
+        });
+
         ImageButton imageButton= (ImageButton)view.findViewById(R.id.action_bar_back);
 
         imageButton.setOnClickListener(new View.OnClickListener() {
@@ -95,14 +142,9 @@ public class ContactUsActivity extends AppCompatActivity {
         });
 
 
-//        final EditText name   = (EditText)findViewById(R.id.fname);
-//        final EditText mail   = (EditText)findViewById(R.id.editTextemail);
-//        final EditText phone   = (EditText)findViewById(R.id.phone);
-//        final EditText msg   = (EditText)findViewById(R.id.editText2);
         final Button button=(Button)findViewById(R.id.buttonsbmt);
 
         editTextfnm=(EditText)findViewById(R.id.fname);
-        //editTextlnm=(EditText)findViewById(R.id.lname);
         editTextphone=(EditText)findViewById(R.id.phone);
         editTextmsg=(EditText)findViewById(R.id.editText2);
         editTextmail=(EditText)findViewById(R.id.editTextemail);
@@ -128,42 +170,33 @@ public class ContactUsActivity extends AppCompatActivity {
                     editTextmail.setError("Enter a valid email");
                     editTextmail.requestFocus();
                 }
-                else {
-                    Regst();
+                if (editTextphone.getText().toString().length() == 0) {
+                    editTextphone.setError("Phone number not entered");
+                    editTextphone.requestFocus();
                 }
-
-//                StringBuilder body = new StringBuilder();
-//                body.append("Name: "+name.getText().toString());
-//                body.append("\n\n\nMail: "+mail.getText().toString());
-//                body.append("\n\n\nPhone: "+phone.getText().toString());
-//                body.append("\n\n\nProduct: "+msg.getText().toString());
-//
-//
-//                Intent i = new Intent(Intent.ACTION_SEND);
-//                i.setType("text/plain");
-//                i.putExtra(Intent.EXTRA_EMAIL, new String[] {"naseemirza786@gmail.com"} );
-//                i.putExtra(Intent.EXTRA_SUBJECT, "Customer Details");
-//                i.putExtra(Intent.EXTRA_TEXT, body.toString());
-//                startActivity(i);
+                if (editTextmsg.getText().toString().length() == 0) {
+                    editTextmsg.setError("Please type message here");
+                    editTextmsg.requestFocus();
+                }
+                else {
+                    SubmitData();
+                }
 
             }
         });
 
     }
 
-    private void Regst(){
+    private void SubmitData(){
         progressDialog = new ProgressDialog(ContactUsActivity.this);
         progressDialog.setMessage("Information Sending...");
         progressDialog.show();
 
         final String first_name = editTextfnm.getText().toString().trim();
-        //final String last_name = editTextlnm.getText().toString().trim();
         final String email = editTextmail.getText().toString().trim();
         final String phone_no = editTextphone.getText().toString().trim();
         final String your_message = editTextmsg.getText().toString().trim();
 
-
-        //Log.e("resp",Uroll);
         StringRequest stringRequest = new StringRequest(Request.Method.POST,REG_URL ,
                 new Response.Listener<String>() {
                     @Override
@@ -182,7 +215,6 @@ public class ContactUsActivity extends AppCompatActivity {
                                 Toast.makeText(ContactUsActivity.this, msg, Toast.LENGTH_SHORT).show();
                                 progressDialog.dismiss();
                                 editTextfnm.setText("");
-                                //editTextlnm.setText("");
                                 editTextmail.setText("");
                                 editTextphone.setText("");
                                 editTextmsg.setText("");
@@ -209,7 +241,6 @@ public class ContactUsActivity extends AppCompatActivity {
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
                 params.put("first_name", first_name);
-               // params.put("last_name", "");
                 params.put("email", email);
                 params.put("phone_no", phone_no);
                 params.put("your_message", your_message);

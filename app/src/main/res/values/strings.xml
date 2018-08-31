@@ -5,7 +5,6 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
 
-
     <string name="wlcomtexts">I ❤ YOUR HOME was created to help potential Homebuyers and Sellers connect.
         Bringing the two parties together, along with the help of a professional real estate agent,
         minimizes the costs, time and hassle associated with a conventional Real Estate transaction.\n\n
@@ -35,12 +34,15 @@
         please register on our site and we will send more complete information to you.
         We will never sell your information or have anyone contact you unless you give us permission to do so.
         Please review our Privacy Policy for more information.</string>
-    <string name="buyer">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-        Lorem Ipsum is simply dummy text of the printing and typesetting industry.</string>
-    <string name="seller">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-        Lorem Ipsum is simply dummy text of the printing and typesetting industry.</string>
-    <string name="homevaluation">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-        Lorem Ipsum is simply dummy text of the printing and typesetting industry.</string>
+    <string name="buyer">For a Homebuyer, this is about helping find the perfect home whether or not that home is on the market.
+        We are sure you have a house you’ve been eyeing in your favourite neighborhood- that you would love to live in.</string>
+    <string name="seller">I ❤ YOUR HOME was created to help potential Homebuyers and Sellers connect.
+        Bringing the two parties together, along with the help of a professional real estate agent,
+        minimizes the costs, time and hassle associated with a conventional Real Estate transaction.</string>
+    <string name="homevaluation">I ❤ YOUR HOME alerts the Home Owner of your interest,
+        with a personalized letter and can help get you into your dream home.</string>
     <string name="action_settings">Call</string>
+    <string name="mails" />
+    <string name="mail">Complete action using</string>
 
 </resources>

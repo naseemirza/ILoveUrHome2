@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#f0f0f0"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="tbs.thinkbiz.solutions.iloveurhome.MainActivity"
-    tools:showIn="@layout/app_bar_main">
+  >
+
 
     <ScrollView
         android:id="@+id/scrolview"
@@ -22,9 +22,9 @@
             <ImageView
                 android:id="@+id/imageView2"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="250dp"
                 android:scaleType="fitXY"
-                android:src="@drawable/homescrn1" />
+                android:src="@drawable/forlandscap" />
 
             <TextView
                 android:id="@+id/text1"
@@ -41,6 +41,7 @@
                 android:layout_below="@+id/text1"
                 android:paddingLeft="10dp"
                 android:textColor="@color/colorWhite"
+
                 android:textSize="25sp"
                 android:text="You'll love to live"
                 android:layout_width="match_parent"
@@ -78,7 +79,7 @@
             <Button
                 android:id="@+id/buttonbyr"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
                 android:textSize="13sp"
                 android:textColor="@color/colorWhite"
                 android:textAllCaps="false"
@@ -94,7 +95,7 @@
             <Button
                 android:id="@+id/buttonslr"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
                 android:textSize="13sp"
                 android:textColor="@color/colorWhite"
                 android:textAllCaps="false"

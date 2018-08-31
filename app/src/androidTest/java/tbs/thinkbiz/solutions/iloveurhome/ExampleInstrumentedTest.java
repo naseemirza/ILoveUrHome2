@@ -1,4 +1,4 @@
-package com.example.user.iloveurhome;
+package tbs.thinkbiz.solutions.iloveurhome;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

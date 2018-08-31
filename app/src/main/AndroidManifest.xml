@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.user.iloveurhome">
+    package="tbs.thinkbiz.solutions.iloveurhome">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-   <uses-permission android:name="android.permission.CALL_PHONE"/>
-    <uses-permission android:name="android.intent.action.CALL_PRIVILEGED"></uses-permission>
-
-
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.intent.action.CALL_PRIVILEGED" />
 
     <application
         android:allowBackup="true"
@@ -17,7 +15,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".SplashActivity"
-            android:screenOrientation="portrait"
+
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,7 +25,7 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:screenOrientation="portrait"
+
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".BuyersActivity"
@@ -39,7 +37,10 @@
             android:name=".ContactUsActivity"
             android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity android:name=".AboutActivity" />
-        <activity android:name=".ResourcesActivity"></activity>
+        <activity android:name=".ResourcesActivity" />
+        <activity android:name=".LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".RegisterActivity"/>
     </application>
 
 </manifest>

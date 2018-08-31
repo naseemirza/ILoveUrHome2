@@ -1,4 +1,4 @@
-package com.example.user.iloveurhome;
+package tbs.thinkbiz.solutions.iloveurhome;
 
 import org.junit.Test;
 
