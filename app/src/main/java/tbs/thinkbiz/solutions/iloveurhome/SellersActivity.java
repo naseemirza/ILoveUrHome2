@@ -63,6 +63,8 @@ public class SellersActivity extends AppCompatActivity {
 
 
         spiner = (Spinner) findViewById(R.id.spinner);
+        spiner.setFocusable(true);
+        spiner.setFocusableInTouchMode(true);
         String[] users = new String[]{
                 "Please Select State",
                 "Alaska","Alabama","Arkansas","American Samoa","Arizona",
@@ -136,6 +138,7 @@ public class SellersActivity extends AppCompatActivity {
     private boolean isValidate()
     {
         final String mail = editTextmail.getText().toString().trim();
+        int pos =spiner.getSelectedItemPosition();
 
         if (editTextfnm.getText().toString().length() == 0) {
             editTextfnm.setError("First name not entered");
@@ -167,8 +170,9 @@ public class SellersActivity extends AppCompatActivity {
             editTextcity.requestFocus();
             return false;
         }
-        if (spiner.getSelectedItemPosition()==0){
+        if (pos==0){
             spiner.requestFocus();
+            Toast.makeText(SellersActivity.this, "Please Select State", Toast.LENGTH_LONG).show();
             return false;
         }
         return true;

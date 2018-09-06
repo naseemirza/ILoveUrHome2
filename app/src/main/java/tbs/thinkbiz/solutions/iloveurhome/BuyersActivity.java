@@ -66,6 +66,8 @@ public class BuyersActivity extends AppCompatActivity {
         });
 
         spiner = (Spinner) findViewById(R.id.spinner);
+        spiner.setFocusable(true);
+        spiner.setFocusableInTouchMode(true);
         String[] users = new String[]{
                 "Please Select State",
                 "Alaska","Alabama","Arkansas","American Samoa","Arizona",
@@ -114,6 +116,8 @@ public class BuyersActivity extends AppCompatActivity {
 
 
         spiner1 = (Spinner) findViewById(R.id.spinner1);
+        spiner1.setFocusable(true);
+        spiner1.setFocusableInTouchMode(true);
         String[] users1 = new String[]{
                 "Please Select State",
                 "Alaska","Alabama","Arkansas","American Samoa","Arizona",
@@ -213,6 +217,8 @@ public class BuyersActivity extends AppCompatActivity {
     {
 
         final String mail = editTextmail.getText().toString().trim();
+        int pos =spiner.getSelectedItemPosition();
+        int pos1 =spiner1.getSelectedItemPosition();
 
         if (editTextfnm.getText().toString().length() == 0) {
             editTextfnm.setError("First name not entered");
@@ -241,6 +247,12 @@ public class BuyersActivity extends AppCompatActivity {
         if (editTextcity.getText().toString().length() == 0) {
             editTextcity.setError("City not entered");
             editTextcity.requestFocus();
+            return false;
+        }
+
+        if (pos==0){
+            spiner.requestFocus();
+            Toast.makeText(BuyersActivity.this, "Please Select State", Toast.LENGTH_LONG).show();
             return false;
         }
 
@@ -282,6 +294,11 @@ public class BuyersActivity extends AppCompatActivity {
         if (cityhm.getText().toString().length() == 0) {
             cityhm.setError("City not entered");
             cityhm.requestFocus();
+            return false;
+        }
+        if (pos1==0){
+            spiner1.requestFocus();
+            Toast.makeText(BuyersActivity.this, "Please Select State", Toast.LENGTH_LONG).show();
             return false;
         }
         return true;
