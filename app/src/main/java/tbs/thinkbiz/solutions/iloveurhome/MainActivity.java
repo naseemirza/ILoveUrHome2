@@ -1,7 +1,9 @@
 package tbs.thinkbiz.solutions.iloveurhome;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -16,6 +18,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.TextView;
 
 import tbs.thinkbiz.solutions.iloveurhome.R;
 
@@ -24,6 +27,9 @@ public class MainActivity extends AppCompatActivity
 
     Button buttonbyr, buttonslr;
 
+    String username,usermail;
+    TextView textViewname;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +37,10 @@ public class MainActivity extends AppCompatActivity
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        SharedPreferences pref = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        username = pref.getString("Username", "");
+        usermail = pref.getString("email", "");
 
         buttonbyr = (Button) findViewById(R.id.buttonbyr);
         buttonslr = (Button) findViewById(R.id.buttonslr);
@@ -50,14 +60,6 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -68,6 +70,11 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        textViewname= (TextView) navigationView.getHeaderView(0).findViewById(R.id.usernametext);
+        //textViewemail= (TextView) navigationView.getHeaderView(0).findViewById(R.id.textViewmail);
+        textViewname.setText(username);
+        //textViewemail.setText(usermail);
     }
 
     @Override
@@ -138,6 +145,9 @@ public class MainActivity extends AppCompatActivity
 
         }else if (id == R.id.nav_resrcs) {
             startActivity(new Intent(MainActivity.this,ResourcesActivity.class));
+
+        }else if (id == R.id.nav_logout) {
+            startActivity(new Intent(MainActivity.this,LoginActivity.class));
 
         }
 

@@ -50,32 +50,22 @@
     </group>
 
 
-
-
-    <!--<item-->
-    <!--android:id="@+id/nav_about"-->
-
-    <!--android:title="About" />-->
-    <!--<item-->
-    <!--android:id="@+id/nav_byrs"-->
-    <!--android:title="Buyers" />-->
-    <!--<item-->
-    <!--android:id="@+id/nav_slrs"-->
-    <!--android:title="Sellers" />-->
-    <!--<item-->
-    <!--android:id="@+id/nav_contact"-->
-    <!--android:title="Contact" />-->
-    <!--<item-->
-    <!--android:id="@+id/nav_resrcs"-->
-    <!--android:title="Resources" />-->
-
-
     <group android:checkableBehavior="single"
-        android:id="@+id/menu_btm">
+        android:id="@+id/menu_top6">
 
         <item
             android:id="@+id/nav_resrcs"
             android:icon="@drawable/resources"
             android:title="Resources" />
     </group>
+
+    <group android:checkableBehavior="single"
+        android:id="@+id/menu_btm">
+
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/ic_lock_outline_black_24dp"
+            android:title="Logout" />
+    </group>
+
 </menu>

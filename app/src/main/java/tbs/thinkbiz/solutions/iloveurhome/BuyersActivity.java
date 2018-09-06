@@ -42,10 +42,6 @@ public class BuyersActivity extends AppCompatActivity {
     EditText fnameowner,lnameowner;
     EditText street1,street2ad,cityhm,zipcode1;
     ProgressDialog progressDialog;
-    private static String REG_URL="http://demotbs.com/dev/love/mobileapp/buyer.php";
-    int success;
-    int error;
-    String msg;
 
     RadioGroup radioGroup1,radioGroup2;
     RadioButton radioButton1,radioButton2;
@@ -203,102 +199,95 @@ public class BuyersActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String mail = editTextmail.getText().toString().trim();
 
-                if (editTextfnm.getText().toString().length() == 0) {
-                    editTextfnm.setError("First name not entered");
-                    editTextfnm.requestFocus();
-                }
-                if (editTextlnm.getText().toString().length() == 0) {
-                    editTextlnm.setError("Last name not entered");
-                    editTextlnm.requestFocus();
-                }
-
-
-                if (TextUtils.isEmpty(mail)) {
-                    editTextmail.setError("Please enter your email");
-                    editTextmail.requestFocus();
-                }
-
-                if (!Patterns.EMAIL_ADDRESS.matcher(mail).matches()) {
-                    editTextmail.setError("Enter a valid email");
-                    editTextmail.requestFocus();
-                }
-                if (editTextphone.getText().toString().length() == 0) {
-                    editTextphone.setError("Phone number not entered");
-                    editTextphone.requestFocus();
-                }
-                if (editTextstreet.getText().toString().length() == 0) {
-                    editTextstreet.setError("Street not entered");
-                    editTextstreet.requestFocus();
-                }
-                if (editTextapt.getText().toString().length() == 0) {
-                    editTextapt.setError("Apt number not entered");
-                    editTextapt.requestFocus();
-                }
-                if (editTextcity.getText().toString().length() == 0) {
-                    editTextcity.setError("City not entered");
-                    editTextcity.requestFocus();
-                }
-                if (editTextzip.getText().toString().length() == 0) {
-                    editTextzip.setError("Zipcode not entered");
-                    editTextzip.requestFocus();
-                }
-                if (radioGroup1.getCheckedRadioButtonId()==-1) {
-                    radioButton1.setError("Please select one option");
-                    radioGroup1.requestFocus();
-
-                }
-                if (radioGroup2.getCheckedRadioButtonId()==-1) {
-                    radioButton2.setError("Please select one option");
-                    radioGroup2.requestFocus();
-
-                }
-                if (fnameag.getText().toString().length() == 0) {
-                    fnameag.setError("Agent first name not entered");
-                    fnameag.requestFocus();
-                }
-                if (lnameag.getText().toString().length() == 0) {
-                    lnameag.setError("Agent last name not entered");
-                    lnameag.requestFocus();
-                }
-                if (cmpnyag.getText().toString().length() == 0) {
-                    cmpnyag.setError("Real state name not entered");
-                    cmpnyag.requestFocus();
-                }
-                if (fnameowner.getText().toString().length() == 0) {
-                    fnameowner.setError("Owner first name not entered");
-                    fnameowner.requestFocus();
-                }
-                if (lnameowner.getText().toString().length() == 0) {
-                    lnameowner.setError("Owner last name not entered");
-                    lnameowner.requestFocus();
-                }
-                if (street1.getText().toString().length() == 0) {
-                    street1.setError("Street1 not entered");
-                    street1.requestFocus();
-                }
-                if (street2ad.getText().toString().length() == 0) {
-                    street2ad.setError("Street2 not entered");
-                    street2ad.requestFocus();
-                }
-                if (cityhm.getText().toString().length() == 0) {
-                    cityhm.setError("City not entered");
-                    cityhm.requestFocus();
-                }
-                if (zipcode1.getText().toString().length() == 0) {
-                    zipcode1.setError("Zipcode not entered");
-                    zipcode1.requestFocus();
-                }
-
-                else {
+                if(isValidate())
+                {
                     SubmitData();
                 }
+
             }
         });
 
+    }
+    private boolean isValidate()
+    {
+
+        final String mail = editTextmail.getText().toString().trim();
+
+        if (editTextfnm.getText().toString().length() == 0) {
+            editTextfnm.setError("First name not entered");
+            editTextfnm.requestFocus();
+            return false;
+        }
+
+
+        if (TextUtils.isEmpty(mail)) {
+            editTextmail.setError("Please enter your email");
+            editTextmail.requestFocus();
+            return false;
+        }
+
+        if (!Patterns.EMAIL_ADDRESS.matcher(mail).matches()) {
+            editTextmail.setError("Enter a valid email");
+            editTextmail.requestFocus();
+            return false;
+        }
+        if (editTextstreet.getText().toString().length() == 0) {
+            editTextstreet.setError("Street not entered");
+            editTextstreet.requestFocus();
+            return false;
+        }
+
+        if (editTextcity.getText().toString().length() == 0) {
+            editTextcity.setError("City not entered");
+            editTextcity.requestFocus();
+            return false;
+        }
+
+        if (radioGroup1.getCheckedRadioButtonId()==-1) {
+            radioButton1.setError("Please select one option");
+            radioGroup1.requestFocus();
+            return false;
+
+        }
+        if (radioGroup2.getCheckedRadioButtonId()==-1) {
+            radioButton2.setError("Please select one option");
+            radioGroup2.requestFocus();
+            return false;
+
+        }
+        if (fnameag.getText().toString().length() == 0) {
+            fnameag.setError("Agent first name not entered");
+            fnameag.requestFocus();
+            return false;
+        }
+
+        if (cmpnyag.getText().toString().length() == 0) {
+            cmpnyag.setError("Real state name not entered");
+            cmpnyag.requestFocus();
+            return false;
+        }
+        if (fnameowner.getText().toString().length() == 0) {
+            fnameowner.setError("Owner first name not entered");
+            fnameowner.requestFocus();
+            return false;
+        }
+
+        if (street1.getText().toString().length() == 0) {
+            street1.setError("Street1 not entered");
+            street1.requestFocus();
+            return false;
+        }
+
+        if (cityhm.getText().toString().length() == 0) {
+            cityhm.setError("City not entered");
+            cityhm.requestFocus();
+            return false;
+        }
+        return true;
 
     }
+
     private void SubmitData(){
         progressDialog = new ProgressDialog(BuyersActivity.this);
         progressDialog.setMessage("Information Sending...");
@@ -318,8 +307,6 @@ public class BuyersActivity extends AppCompatActivity {
         final String homesale = ((RadioButton) findViewById(radioGroup1.getCheckedRadioButtonId())).getText().toString();
         final String realstate = ((RadioButton) findViewById(radioGroup2.getCheckedRadioButtonId())).getText().toString();
 
-       // Log.e("homesl",homesale);
-       // Log.e("homes2",realstate);
 
         final String fnameage = fnameag.getText().toString().trim();
         final String lnameage = lnameag.getText().toString().trim();
@@ -336,7 +323,7 @@ public class BuyersActivity extends AppCompatActivity {
         final String states1 = spiner1.getSelectedItem().toString();
         final String zipcode11 = zipcode1.getText().toString().trim();
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST,REG_URL ,
+        StringRequest stringRequest = new StringRequest(Request.Method.POST,AllUrls.BUYERS_URL ,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -345,11 +332,11 @@ public class BuyersActivity extends AppCompatActivity {
 
                         try {
                             JSONObject obj = new JSONObject(response);
-                            success= Integer.parseInt(obj.getString("s"));
-                            error= Integer.parseInt(obj.getString("e"));
-                            msg=obj.getString("m");
+                            String success=obj.getString("s");
+                            String error=obj.getString("e");
+                            String msg=obj.getString("m");
 
-                            if (success==1||success==0)
+                            if(success.equalsIgnoreCase("1"))
                             {
                                 Toast.makeText(BuyersActivity.this, msg, Toast.LENGTH_SHORT).show();
                                 progressDialog.dismiss();
@@ -374,6 +361,9 @@ public class BuyersActivity extends AppCompatActivity {
                                 zipcode1.setText("");
 
 
+                            }
+                            else {
+                                Toast.makeText(BuyersActivity.this, msg, Toast.LENGTH_LONG).show();
                             }
 
                         } catch (JSONException e) {

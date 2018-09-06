@@ -42,21 +42,15 @@ public class ContactUsActivity extends AppCompatActivity {
 
     LinearLayout linearLayoutcall,linearLayoutmail;
 
-    Button button;
-    EditText editTextfnm,editTextlnm,editTextmail,editTextphone,editTextmsg;
+    EditText editTextfnm,editTextmail,editTextphone,editTextmsg;
 
     ProgressDialog progressDialog;
-    private static String REG_URL="http://demotbs.com/dev/love/mobileapp/contactus.php";
-    int success;
-    int error;
-    String msg;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact_us);
-
-
 
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setDisplayShowCustomEnabled(true);
@@ -125,10 +119,6 @@ public class ContactUsActivity extends AppCompatActivity {
                     startActivity(openInChooser);
                 }
 
-//                Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
-//                emailIntent.setType("plain/text");
-//                startActivity(emailIntent);
-
             }
         });
 
@@ -153,38 +143,50 @@ public class ContactUsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                final String mail = editTextmail.getText().toString().trim();
 
-                if (editTextfnm.getText().toString().length() == 0) {
-                    editTextfnm.setError("First name not entered");
-                    editTextfnm.requestFocus();
-                }
-
-
-                if (TextUtils.isEmpty(mail)) {
-                    editTextmail.setError("Please enter your email");
-                    editTextmail.requestFocus();
-                }
-
-                if (!Patterns.EMAIL_ADDRESS.matcher(mail).matches()) {
-                    editTextmail.setError("Enter a valid email");
-                    editTextmail.requestFocus();
-                }
-                if (editTextphone.getText().toString().length() == 0) {
-                    editTextphone.setError("Phone number not entered");
-                    editTextphone.requestFocus();
-                }
-                if (editTextmsg.getText().toString().length() == 0) {
-                    editTextmsg.setError("Please type message here");
-                    editTextmsg.requestFocus();
-                }
-                else {
+                if(isValidate())
+                {
                     SubmitData();
                 }
 
             }
         });
 
+    }
+
+    private boolean isValidate()
+    {
+        final String mail = editTextmail.getText().toString().trim();
+
+        if (editTextfnm.getText().toString().length() == 0) {
+            editTextfnm.setError("First name not entered");
+            editTextfnm.requestFocus();
+            return false;
+        }
+
+
+        if (TextUtils.isEmpty(mail)) {
+            editTextmail.setError("Please enter your email");
+            editTextmail.requestFocus();
+            return false;
+        }
+
+        if (!Patterns.EMAIL_ADDRESS.matcher(mail).matches()) {
+            editTextmail.setError("Enter a valid email");
+            editTextmail.requestFocus();
+            return false;
+        }
+        if (editTextphone.getText().toString().length() == 0) {
+            editTextphone.setError("Phone number not entered");
+            editTextphone.requestFocus();
+            return false;
+        }
+        if (editTextmsg.getText().toString().length() == 0) {
+            editTextmsg.setError("Please type message here");
+            editTextmsg.requestFocus();
+            return false;
+        }
+        return true;
     }
 
     private void SubmitData(){
@@ -197,7 +199,7 @@ public class ContactUsActivity extends AppCompatActivity {
         final String phone_no = editTextphone.getText().toString().trim();
         final String your_message = editTextmsg.getText().toString().trim();
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST,REG_URL ,
+        StringRequest stringRequest = new StringRequest(Request.Method.POST,AllUrls.CONTACT_US ,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -206,11 +208,11 @@ public class ContactUsActivity extends AppCompatActivity {
 
                         try {
                             JSONObject obj = new JSONObject(response);
-                            success= Integer.parseInt(obj.getString("s"));
-                            error= Integer.parseInt(obj.getString("e"));
-                            msg=obj.getString("m");
+                            String success=obj.getString("s");
+                            String error=obj.getString("e");
+                            String msg=obj.getString("m");
 
-                            if (success==1||success==0)
+                            if(success.equalsIgnoreCase("1"))
                             {
                                 Toast.makeText(ContactUsActivity.this, msg, Toast.LENGTH_SHORT).show();
                                 progressDialog.dismiss();
@@ -219,6 +221,9 @@ public class ContactUsActivity extends AppCompatActivity {
                                 editTextphone.setText("");
                                 editTextmsg.setText("");
 
+                            }
+                            else {
+                                Toast.makeText(ContactUsActivity.this, msg, Toast.LENGTH_LONG).show();
                             }
 
                         } catch (JSONException e) {

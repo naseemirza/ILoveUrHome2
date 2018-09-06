@@ -63,7 +63,7 @@
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         android:ems="10"
-        android:hint="email@example.com"
+        android:hint=" Username"
         android:inputType="textEmailAddress"
         android:paddingLeft="10dp"
         android:paddingStart="10dp"
@@ -103,11 +103,8 @@
         android:textSize="12sp" />
 
 
-
-
-
     <Button
-        android:id="@+id/buttonL"
+        android:id="@+id/button_regs"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_below="@+id/passtext"
@@ -126,7 +123,7 @@
         android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/buttonL"
+        android:layout_below="@+id/button_regs"
         android:gravity="center"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
@@ -146,17 +143,6 @@
         android:textSize="13sp"
         android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/textViewfrgt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textViewRgs"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="10dp"
-        android:gravity="center"
-        android:text="Forgot Password"
-        android:textColor="#FF0000"
-        android:textSize="13sp" />
 
         </RelativeLayout>
     </ScrollView>

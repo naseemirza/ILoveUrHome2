@@ -177,7 +177,7 @@
                 android:textSize="12sp"
                 android:paddingStart="10dp"
                 android:layout_width="match_parent"
-                android:hint="Street 2"
+                android:hint="Street"
                 android:layout_height="wrap_content"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"

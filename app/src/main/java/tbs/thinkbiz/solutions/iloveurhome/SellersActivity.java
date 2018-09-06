@@ -39,12 +39,6 @@ public class SellersActivity extends AppCompatActivity {
 
     EditText editTextfnm,editTextlnm,editTextmail,editTextphone,editTextstreet,editTextapt,editTextcity,editTextzip;
     ProgressDialog progressDialog;
-    private static String REG_URL="http://demotbs.com/dev/love/mobileapp/seller.php";
-    int success;
-    int error;
-    String msg;
-
-    //TextView tv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -128,58 +122,56 @@ public class SellersActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String mail = editTextmail.getText().toString().trim();
-
-                if (editTextfnm.getText().toString().length() == 0) {
-                    editTextfnm.setError("First name not entered");
-                    editTextfnm.requestFocus();
-                }
-                if (editTextlnm.getText().toString().length() == 0) {
-                    editTextlnm.setError("Last name not entered");
-                    editTextlnm.requestFocus();
-                }
-
-                if (TextUtils.isEmpty(mail)) {
-                    editTextmail.setError("Please enter your email");
-                    editTextmail.requestFocus();
-                }
-
-                if (!Patterns.EMAIL_ADDRESS.matcher(mail).matches()) {
-                    editTextmail.setError("Enter a valid email");
-                    editTextmail.requestFocus();
-                }
-                if (editTextphone.getText().toString().length() == 0) {
-                    editTextphone.setError("Mobile number not entered");
-                    editTextphone.requestFocus();
-                }
-
-                if (editTextstreet.getText().toString().length() == 0) {
-                    editTextstreet.setError("Street not entered");
-                    editTextstreet.requestFocus();
-                }
-                if (editTextapt.getText().toString().length() == 0) {
-                    editTextapt.setError("Apt number not entered");
-                    editTextapt.requestFocus();
-                }
-                if (editTextcity.getText().toString().length() == 0) {
-                    editTextcity.setError("City not entered");
-                    editTextcity.requestFocus();
-                }
-                if (spiner.getSelectedItemPosition()==0){
-                    spiner.requestFocus();
-                }
-
-                if (editTextzip.getText().toString().length() == 0) {
-                    editTextzip.setError("Zipcode not entered");
-                    editTextzip.requestFocus();
-                }
-                else {
+                if(isValidate())
+                {
                     SubmitData();
                 }
+
             }
         });
 
 
+    }
+
+    private boolean isValidate()
+    {
+        final String mail = editTextmail.getText().toString().trim();
+
+        if (editTextfnm.getText().toString().length() == 0) {
+            editTextfnm.setError("First name not entered");
+            editTextfnm.requestFocus();
+            return false;
+        }
+
+
+        if (TextUtils.isEmpty(mail)) {
+            editTextmail.setError("Please enter your email");
+            editTextmail.requestFocus();
+            return false;
+        }
+
+        if (!Patterns.EMAIL_ADDRESS.matcher(mail).matches()) {
+            editTextmail.setError("Enter a valid email");
+            editTextmail.requestFocus();
+            return false;
+        }
+
+        if (editTextstreet.getText().toString().length() == 0) {
+            editTextstreet.setError("Street not entered");
+            editTextstreet.requestFocus();
+            return false;
+        }
+
+        if (editTextcity.getText().toString().length() == 0) {
+            editTextcity.setError("City not entered");
+            editTextcity.requestFocus();
+            return false;
+        }
+        if (spiner.getSelectedItemPosition()==0){
+            spiner.requestFocus();
+            return false;
+        }
+        return true;
     }
 
     private void SubmitData(){
@@ -194,10 +186,12 @@ public class SellersActivity extends AppCompatActivity {
         final String street = editTextstreet.getText().toString().trim();
         final String aptnumber = editTextapt.getText().toString().trim();
         final String city = editTextcity.getText().toString().trim();
-        final String states = spiner.getSelectedItem().toString();
+        final String state = spiner.getSelectedItem().toString();
         final String zipcode = editTextzip.getText().toString().trim();
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST,REG_URL ,
+        Log.e("state",state);
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST,AllUrls.SELLERS_URL ,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -206,11 +200,11 @@ public class SellersActivity extends AppCompatActivity {
 
                         try {
                             JSONObject obj = new JSONObject(response);
-                            success= Integer.parseInt(obj.getString("s"));
-                            error= Integer.parseInt(obj.getString("e"));
-                            msg=obj.getString("m");
+                            String success=obj.getString("s");
+                            String error=obj.getString("e");
+                            String msg=obj.getString("m");
 
-                            if (success==1||success==0)
+                            if(success.equalsIgnoreCase("1"))
                             {
                                 Toast.makeText(SellersActivity.this, msg, Toast.LENGTH_SHORT).show();
                                 progressDialog.dismiss();
@@ -223,6 +217,9 @@ public class SellersActivity extends AppCompatActivity {
                                 editTextcity.setText("");
                                 editTextzip.setText("");
 
+                            }
+                            else {
+                                Toast.makeText(SellersActivity.this, msg, Toast.LENGTH_LONG).show();
                             }
 
                         } catch (JSONException e) {
@@ -251,7 +248,7 @@ public class SellersActivity extends AppCompatActivity {
                 params.put("street", street);
                 params.put("apt_number", aptnumber);
                 params.put("city", city);
-                params.put("state", states);
+                params.put("state", state);
                 params.put("zipcode", zipcode);
 
                 return params;
