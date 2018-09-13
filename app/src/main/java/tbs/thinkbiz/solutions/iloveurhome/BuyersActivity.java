@@ -65,11 +65,14 @@ public class BuyersActivity extends AppCompatActivity {
             }
         });
 
+
+
+
         spiner = (Spinner) findViewById(R.id.spinner);
         spiner.setFocusable(true);
         spiner.setFocusableInTouchMode(true);
         String[] users = new String[]{
-                "Please Select State",
+                "Please Select State*",
                 "Alaska","Alabama","Arkansas","American Samoa","Arizona",
                 "California","Colorado","Connecticut","District of Columbia","Delaware",
                 "Florida","Georgia","Guam","Hawaii","Iowa","Idaho","Illinois","Indiana","Kansas",
@@ -113,11 +116,9 @@ public class BuyersActivity extends AppCompatActivity {
         spinnerArrayAdapter.setDropDownViewResource(R.layout.spinneritems);
         spiner.setAdapter(spinnerArrayAdapter);
 
-
-
         spiner1 = (Spinner) findViewById(R.id.spinner1);
-        spiner1.setFocusable(true);
-        spiner1.setFocusableInTouchMode(true);
+//        spiner1.setFocusable(true);
+        //spiner1.setFocusableInTouchMode(true);
         String[] users1 = new String[]{
                 "Please Select State",
                 "Alaska","Alabama","Arkansas","American Samoa","Arizona",
@@ -215,7 +216,6 @@ public class BuyersActivity extends AppCompatActivity {
     }
     private boolean isValidate()
     {
-
         final String mail = editTextmail.getText().toString().trim();
         int pos =spiner.getSelectedItemPosition();
         int pos1 =spiner1.getSelectedItemPosition();
@@ -267,40 +267,12 @@ public class BuyersActivity extends AppCompatActivity {
             radioGroup2.requestFocus();
             return false;
 
-        }
-        if (fnameag.getText().toString().length() == 0) {
-            fnameag.setError("Agent first name not entered");
-            fnameag.requestFocus();
-            return false;
-        }
-
-        if (cmpnyag.getText().toString().length() == 0) {
-            cmpnyag.setError("Real state name not entered");
-            cmpnyag.requestFocus();
-            return false;
-        }
-        if (fnameowner.getText().toString().length() == 0) {
-            fnameowner.setError("Owner first name not entered");
-            fnameowner.requestFocus();
-            return false;
-        }
-
-        if (street1.getText().toString().length() == 0) {
-            street1.setError("Street1 not entered");
-            street1.requestFocus();
-            return false;
-        }
-
-        if (cityhm.getText().toString().length() == 0) {
-            cityhm.setError("City not entered");
-            cityhm.requestFocus();
-            return false;
-        }
-        if (pos1==0){
-            spiner1.requestFocus();
-            Toast.makeText(BuyersActivity.this, "Please Select State", Toast.LENGTH_LONG).show();
-            return false;
-        }
+       }
+//        if (pos1==0){
+//            spiner1.requestFocus();
+//            Toast.makeText(BuyersActivity.this, "Please Select State", Toast.LENGTH_LONG).show();
+//            return false;
+//        }
         return true;
 
     }

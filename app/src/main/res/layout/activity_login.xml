@@ -36,19 +36,29 @@
         android:textSize="15sp" />
 
 
-    <TextView
-        android:id="@+id/textViewemail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/textView5"
-        android:layout_marginLeft="20dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="25dp"
-        android:text="Email *"
-        android:textColor="#272727"
-        android:textSize="15sp" />
+            <TextView
+                android:id="@+id/textViewemail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/textView5"
+                android:layout_marginLeft="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="25dp"
+                android:text="Username"
+                android:textColor="#272727"
+                android:textSize="15sp" />
+
+            <TextView
+                android:text="*"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/red"
+                android:textSize="18sp"
+                android:layout_below="@+id/textView5"
+                android:layout_toRightOf="@+id/textViewemail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
     <EditText
         android:id="@+id/editTextemail"
@@ -67,21 +77,31 @@
         android:inputType="textEmailAddress"
         android:paddingLeft="10dp"
         android:paddingStart="10dp"
-        android:textSize="12sp" />
+        android:textSize="13sp" />
 
-    <TextView
-        android:id="@+id/textViewphn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/editTextemail"
-        android:layout_marginLeft="20dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:text="Password *"
-        android:textColor="#272727"
-        android:textSize="15sp" />
+            <TextView
+                android:id="@+id/textViewphn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/editTextemail"
+                android:layout_marginLeft="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:text="Password"
+                android:textColor="#272727"
+                android:textSize="15sp" />
+
+            <TextView
+                android:text="*"
+                android:layout_marginTop="15dp"
+                android:textColor="@color/red"
+                android:textSize="18sp"
+                android:layout_below="@+id/editTextemail"
+                android:layout_toRightOf="@+id/textViewphn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
     <EditText
         android:id="@+id/passtext"
@@ -95,12 +115,12 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
         android:background="@color/colorWhite"
-        android:hint="password"
+        android:hint="Password"
         android:inputType="textPassword"
         android:paddingLeft="10dp"
         android:paddingStart="10dp"
         android:textCursorDrawable="@color/darkgray"
-        android:textSize="12sp" />
+        android:textSize="13sp" />
 
 
     <Button

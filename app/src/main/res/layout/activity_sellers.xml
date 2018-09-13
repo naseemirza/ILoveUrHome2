@@ -46,6 +46,16 @@
                 android:layout_marginTop="25dp"
                 android:text="Name" />
 
+            <TextView
+                android:text="*"
+                android:layout_marginTop="22dp"
+                android:textColor="@color/red"
+                android:textSize="18sp"
+                android:layout_below="@+id/textView"
+                android:layout_toRightOf="@+id/textViewname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
             <EditText
                 android:id="@+id/fname"
                 android:layout_below="@+id/textViewname"
@@ -57,7 +67,7 @@
                 android:textSize="12sp"
                 android:paddingStart="10dp"
                 android:layout_width="match_parent"
-                android:hint="Your First Name"
+                android:hint="Your First Name*"
                 android:layout_height="wrap_content"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
@@ -98,6 +108,16 @@
                 android:layout_marginTop="25dp"
                 android:text="Email" />
 
+            <TextView
+                android:text="*"
+                android:layout_marginTop="22dp"
+                android:textColor="@color/red"
+                android:textSize="18sp"
+                android:layout_below="@+id/lname"
+                android:layout_toRightOf="@+id/textViewemail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
             <EditText
                 android:id="@+id/editTextemail"
                 android:layout_below="@+id/textViewemail"
@@ -109,7 +129,7 @@
                 android:textSize="12sp"
                 android:paddingStart="10dp"
                 android:layout_width="match_parent"
-                android:hint="email@example.com"
+                android:hint="email@example.com*"
                 android:layout_height="wrap_content"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
@@ -165,6 +185,16 @@
                 android:layout_marginTop="25dp"
                 android:text="Street address" />
 
+            <TextView
+                android:text="*"
+                android:layout_marginTop="22dp"
+                android:textColor="@color/red"
+                android:textSize="18sp"
+                android:layout_below="@+id/phone"
+                android:layout_toRightOf="@+id/textViewstrtadd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
             <EditText
                 android:id="@+id/street2"
                 android:layout_below="@+id/textViewstrtadd"
@@ -176,7 +206,7 @@
                 android:textSize="12sp"
                 android:paddingStart="10dp"
                 android:layout_width="match_parent"
-                android:hint="Street"
+                android:hint="Street*"
                 android:layout_height="wrap_content"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
@@ -212,7 +242,7 @@
                 android:layout_below="@+id/aptnmbr"
                 android:layout_marginTop="12dp"
                 android:background="@color/colorWhite"
-                android:hint="City"
+                android:hint="City*"
                 android:paddingLeft="10dp"
                 android:layout_marginEnd="20dp"
                 android:paddingStart="10dp"

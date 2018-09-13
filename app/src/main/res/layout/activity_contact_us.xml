@@ -161,6 +161,16 @@
                 android:layout_marginTop="30dp"
                 android:text="Name" />
 
+            <TextView
+                android:text="*"
+                android:layout_marginTop="25dp"
+                android:textColor="@color/red"
+                android:textSize="18sp"
+                android:layout_below="@+id/li3"
+                android:layout_toRightOf="@+id/textname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
             <EditText
                 android:id="@+id/fname"
                 android:layout_below="@+id/textname"
@@ -195,6 +205,17 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
                 android:text="Email" />
+
+            <TextView
+                android:text="*"
+                android:layout_marginTop="6dp"
+                android:textColor="@color/red"
+                android:textSize="18sp"
+                android:layout_below="@+id/fname"
+                android:layout_toRightOf="@+id/textViewemail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
 
             <EditText
                 android:id="@+id/editTextemail"
@@ -263,6 +284,16 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
                 android:text="Message" />
+
+            <TextView
+                android:text="*"
+                android:layout_marginTop="6dp"
+                android:textColor="@color/red"
+                android:textSize="18sp"
+                android:layout_below="@+id/phone"
+                android:layout_toRightOf="@+id/msg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
 
             <EditText

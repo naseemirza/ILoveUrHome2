@@ -176,11 +176,11 @@ public class ContactUsActivity extends AppCompatActivity {
             editTextmail.requestFocus();
             return false;
         }
-        if (editTextphone.getText().toString().length() == 0) {
-            editTextphone.setError("Phone number not entered");
-            editTextphone.requestFocus();
-            return false;
-        }
+//        if (editTextphone.getText().toString().length() == 0) {
+//            editTextphone.setError("Phone number not entered");
+//            editTextphone.requestFocus();
+//            return false;
+//        }
         if (editTextmsg.getText().toString().length() == 0) {
             editTextmsg.setError("Please type message here");
             editTextmsg.requestFocus();

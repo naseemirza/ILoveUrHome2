@@ -66,7 +66,7 @@ public class SellersActivity extends AppCompatActivity {
         spiner.setFocusable(true);
         spiner.setFocusableInTouchMode(true);
         String[] users = new String[]{
-                "Please Select State",
+                "Please Select State*",
                 "Alaska","Alabama","Arkansas","American Samoa","Arizona",
                 "California","Colorado","Connecticut","District of Columbia","Delaware",
                 "Florida","Georgia","Guam","Hawaii","Iowa","Idaho","Illinois","Indiana","Kansas",

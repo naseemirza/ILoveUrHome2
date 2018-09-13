@@ -1,9 +1,14 @@
 package tbs.thinkbiz.solutions.iloveurhome;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.provider.SyncStateContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -42,9 +47,34 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        if (isOnline()) {
+            //do whatever you want to do
+        } else {
+            try {
+                AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+
+                alertDialog.setTitle("Info");
+                alertDialog.setMessage("Internet not available, Cross check your internet connectivity and try again");
+                alertDialog.setIcon(R.drawable.ic_warning_black_24dp);
+                alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+//                        finish();
+                        startActivity(new Intent(LoginActivity.this,LoginActivity.class));
+
+                    }
+                });
+
+                alertDialog.show();
+            } catch (Exception e) {
+                //Log.d(SyncStateContract.Constants.TAG, "Show Dialog: " + e.getMessage());
+            }
+        }
+
+
         editTextuname = (EditText) findViewById(R.id.editTextemail);
         editTextpass = (EditText) findViewById(R.id.passtext);
         buttonLogin=(Button)findViewById(R.id.button_regs);
+
 
         reg = (TextView) findViewById(R.id.textViewRgs);
         reg.setOnClickListener(new View.OnClickListener() {
@@ -66,10 +96,12 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if(isValidate())
-                {
-                    Loginbtn();
-                }
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(intent);
+//                if(isValidate())
+//                {
+//                    Loginbtn();
+//                }
             }
         });
     }
@@ -164,5 +196,16 @@ public class LoginActivity extends AppCompatActivity {
 
         RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
         queue.add(stringRequest);
+    }
+
+    public boolean isOnline() {
+        ConnectivityManager conMgr = (ConnectivityManager) getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = conMgr.getActiveNetworkInfo();
+
+        if(netInfo == null || !netInfo.isConnected() || !netInfo.isAvailable()){
+           // Toast.makeText(this, "No Internet connection!", Toast.LENGTH_LONG).show();
+            return false;
+        }
+        return true;
     }
 }
